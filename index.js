@@ -1,52 +1,46 @@
-"use strict";
-
-/*
-** Import Packages
-*/
+// モジュールのインポート
 const server = require("express")();
-const bot_express = require("bot-express");
+const line = require("@line/bot-sdk"); // Messaging APIのSDKをインポート
 
-/*
-** Middleware Configuration
-*/
-server.listen(process.env.PORT || 5000, () => {
-  console.log("server is running...");
+// パラメータ設定
+const line_config = {
+  channelAccessToken: process.env.LINE_ACCESS_TOKEN, // 環境変数からアクセストークンをセットしています
+  channelSecret: process.env.LINE_CHANNEL_SECRET // 環境変数からChannel Secretをセットしています
+};
+
+// Webサーバー設定
+server.listen(process.env.PORT || 3000);
+
+// APIコールのためのクライアントインスタンスを作成
+const bot = new line.Client(line_config);
+
+// ルーター設定
+server.post('/webhook', line.middleware(line_config), (req, res, next) => {
+  // 先行してLINE側にステータスコード200でレスポンスする。
+  res.sendStatus(200);
+
+  // すべてのイベント処理のプロミスを格納する配列。
+  let events_processed = [];
+
+  // イベントオブジェクトを順次処理。
+  req.body.events.forEach((event) => {
+    // この処理の対象をイベントタイプがメッセージで、かつ、テキストタイプだった場合に限定。
+    if (event.type == "message" && event.message.type == "text"){
+      // ユーザーからのテキストメッセージが「こんにちは」だった場合のみ反応。
+      if (event.message.text == "こんにちは"){
+        // replyMessage()で返信し、そのプロミスをevents_processedに追加。
+        events_processed.push(bot.replyMessage(event.replyToken, {
+          type: "text",
+          text: "これはこれは"
+        }));
+      }
+    }
+  });
+
+  // すべてのイベント処理が終了したら何個のイベントが処理されたか出力。
+  Promise.all(events_processed).then(
+    (response) => {
+      console.log(`${response.length} event(s) processed.`);
+    }
+  );
 });
-
-/*
-** Mount bot-express
-*/
-server.use("/webhook", bot_express({
-  language: "ja",
-  nlu: {
-    type: "dialogflow",
-    options: {
-      project_id: process.env.GOOGLE_PROJECT_ID,
-      client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY,
-      language: "ja"
-    }
-  },
-  parser: [{
-    type: "dialogflow",
-    options: {
-      project_id: process.env.GOOGLE_PROJECT_ID,
-      client_email: process.env.GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.GOOGLE_PRIVATE_KEY,
-      language: "ja"
-    }
-  }],
-  memory: {
-    type: "memory-cache",
-    retention: 600
-  },
-  line_channel_secret: process.env.LINE_CHANNEL_SECRET,
-  line_access_token: process.env.LINE_ACCESS_TOKEN,
-  facebook_app_secret: process.env.FACEBOOK_APP_SECRET,
-  facebook_page_access_token: [
-    {page_id: process.env.FACEBOOK_PAGE_ID, page_access_token: process.env.FACEBOOK_PAGE_ACCESS_TOKEN}
-  ],
-  default_skill: process.env.DEFAULT_SKILL
-}));
-
-module.exports = server;

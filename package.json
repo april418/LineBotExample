@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/april418/LineBotExample/issues"
   },
-  "homepage": "https://github.com/april418/LineBotExample#readme"
+  "homepage": "https://github.com/april418/LineBotExample#readme",
+  "dependencies": {
+    "@line/bot-sdk": "^6.1.0",
+    "express": "^4.16.3"
+  }
 }
