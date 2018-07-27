@@ -1,0 +1,19 @@
+{
+  "name": "line-bot-example",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/april418/LineBotExample.git"
+  },
+  "author": "april418",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/april418/LineBotExample/issues"
+  },
+  "homepage": "https://github.com/april418/LineBotExample#readme"
+}
