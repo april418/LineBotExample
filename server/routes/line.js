@@ -30,6 +30,7 @@ router.post('/', middleware(lineConfig), (request, response, next) => {
           cmc: parseInt(event.message.text),
           random: true
         }).then(response => {
+          console.log(response)
           const card = response.cards[0]
           if(!card) return
 
