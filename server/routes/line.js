@@ -36,26 +36,35 @@ router.post('/', middleware(lineConfig), (request, response, next) => {
           if(!card) return
 
           return bot.replyMessage(event.replyToken, {
-            type: 'bubble',
-            header: {
-              type: 'box',
-              layout: 'vertical',
-              contents: [
-                {
-                  type: 'text',
-                  text: card.name
-                }
-              ]
-            },
-            body: {
-              type: 'box',
-              layout: 'vertical',
-              contents: [
-                {
-                  type: 'text',
-                  text: card.text
-                }
-              ]
+            type: 'flex',
+            altText: card.name,
+            contents: {
+              type: 'bubble',
+              header: {
+                type: 'box',
+                layout: 'vertical',
+                contents: [
+                  {
+                    type: 'text',
+                    text: card.name
+                  }
+                ]
+              },
+              hero: {
+                type: 'image',
+                url: card.imageUrl,
+                size: 'full'
+              },
+              body: {
+                type: 'box',
+                layout: 'vertical',
+                contents: [
+                  {
+                    type: 'text',
+                    text: card.text
+                  }
+                ]
+              }
             }
           })
         }).catch(error => {
