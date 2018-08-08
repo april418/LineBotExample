@@ -47,11 +47,6 @@ router.post('/', middleware(lineConfig), (request, response, next) => {
                 }
               ]
             },
-            hero: {
-              type: 'image',
-              url: card.imageUrl,
-              size: 'full'
-            },
             body: {
               type: 'box',
               layout: 'vertical',
