@@ -31,6 +31,8 @@ router.post('/', middleware(lineConfig), (request, response, next) => {
           random: true
         }).then(cards => {
           const card = cards[0]
+          console.log(card)
+
           if(!card) return
 
           return bot.replyMessage(event.replyToken, {
@@ -61,6 +63,8 @@ router.post('/', middleware(lineConfig), (request, response, next) => {
               ]
             }
           })
+        }).catch(error => {
+          console.log(error)
         })
       }
     }
