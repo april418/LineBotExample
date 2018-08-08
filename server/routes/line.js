@@ -29,8 +29,11 @@ router.post('/', middleware(lineConfig), (request, response, next) => {
           type: 'Creature',
           cmc: parseInt(event.message.text),
           random: true
-        }).then(card => {
-          bot.replyMessage(event.replyToken, {
+        }).then(response => {
+          const card = response.cards[0]
+          if(!card) return
+
+          return bot.replyMessage(event.replyToken, {
             type: 'bubble',
             header: {
               type: 'box',
