@@ -18,10 +18,8 @@ router.post('/', middleware(lineConfig), (request, response, next) => {
     return emitter.emitAll(event)
   })).then(returns => {
     console.log(`${returns.length} event(s) processed.`)
-  }).catch(errors => {
-    errors.forEach(error => {
-      console.log(error)
-    })
+  }).catch(error => {
+    console.log(error)
   })
 })
 
