@@ -39,11 +39,13 @@ class MomirBasic extends Skill {
             contents: [
               {
                 type: 'text',
-                text: card.name
+                text: card.name,
+                align: 'start'
               },
               {
                 type: 'text',
-                text: card.manaCost
+                text: card.manaCost,
+                align: 'end'
               }
             ]
           },
