@@ -43,7 +43,7 @@ class Skill {
    * @return Promise
    */
   reply(message) {
-    return this.bot.replyToken(this.event.replyToken, message)
+    return this.bot.replyMessage(this.event.replyToken, message)
   }
 }
 
