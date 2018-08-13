@@ -49,7 +49,27 @@ class MomirBasic extends Skill {
             contents: [
               {
                 type: 'text',
-                text: card.text
+                text: card.text,
+                size: 'sm',
+                wrap: true
+              }
+            ]
+          },
+          footer: {
+            type: 'box',
+            layout: 'horizontal',
+            contents: [
+              {
+                type: 'text',
+                text: card.power
+              },
+              {
+                type: 'text',
+                text: '/'
+              },
+              {
+                type: 'text',
+                text: card.toughness
               }
             ]
           }
