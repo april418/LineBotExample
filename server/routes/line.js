@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const { Client, middleware } = require('@line/bot-sdk')
-const { card } = require('mtgsdk')
+const SkillEmitter = require('../skills/bot/skill-emitter.js')
+const skills = require('../skills/bot/skills.js')
 
 const router = Router()
 const lineConfig = {
@@ -8,67 +9,19 @@ const lineConfig = {
   channelSecret: process.env.LINE_CHANNEL_SECRET
 }
 const bot = new Client(lineConfig)
-const pattern = /マナ|mana/
+const emitter = new SkillEmitter(bot, skills)
 
 router.post('/', middleware(lineConfig), (request, response, next) => {
   response.sendStatus(200)
 
-  Promise.all(request.body.events.map((event) => {
-    if(event.type == "message" && event.message.type == "text") {
-      if(event.message.text == "こんにちは") {
-        return bot.replyMessage(event.replyToken, {
-          type: "text",
-          text: "これはこれは"
-        })
-      }
-      else if(pattern.test(event.message.text)) {
-        return card.where({
-          layout: 'normal',
-          page: 1,
-          pageSize: 1,
-          type: 'Creature',
-          cmc: parseInt(event.message.text),
-          random: true
-        }).then(cards => {
-          const card = cards[0]
-          console.log(card)
-
-          if(!card) return
-
-          return bot.replyMessage(event.replyToken, {
-            type: 'flex',
-            altText: card.name,
-            contents: {
-              type: 'bubble',
-              header: {
-                type: 'box',
-                layout: 'vertical',
-                contents: [
-                  {
-                    type: 'text',
-                    text: card.name
-                  }
-                ]
-              },
-              body: {
-                type: 'box',
-                layout: 'vertical',
-                contents: [
-                  {
-                    type: 'text',
-                    text: card.text
-                  }
-                ]
-              }
-            }
-          })
-        }).catch(error => {
-          console.log(error)
-        })
-      }
-    }
-  })).then((response) => {
-    console.log(`${response.length} event(s) processed.`)
+  Promise.all(request.body.events.map(event => {
+    return emitter.emitAll(event)
+  })).then(returns => {
+    console.log(`${returns.length} event(s) processed.`)
+  }).catch(errors => {
+    errors.forEach(error => {
+      console.log(error)
+    })
   })
 })
 
