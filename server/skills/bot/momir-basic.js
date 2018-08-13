@@ -59,7 +59,7 @@ class MomirBasic extends Skill {
   }
 
   messageMeansManaCost() {
-    return this.constructor.PATTERN_MANACOST().test(this.event.message.text)
+    return this.constructor.PATTERN_MANACOST.test(this.event.message.text)
   }
 }
 
