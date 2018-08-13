@@ -40,12 +40,17 @@ class MomirBasic extends Skill {
               {
                 type: 'text',
                 text: card.name
+              },
+              {
+                type: 'text',
+                text: card.manaCost
               }
             ]
           },
           body: {
             type: 'box',
             layout: 'vertical',
+            separator: true,
             contents: [
               {
                 type: 'text',
@@ -58,18 +63,22 @@ class MomirBasic extends Skill {
           footer: {
             type: 'box',
             layout: 'horizontal',
+            separator: true,
             contents: [
               {
                 type: 'text',
-                text: card.power
+                text: card.power,
+                align: 'center'
               },
               {
                 type: 'text',
-                text: '/'
+                text: '/',
+                align: 'center'
               },
               {
                 type: 'text',
-                text: card.toughness
+                text: card.toughness,
+                align: 'center'
               }
             ]
           }
