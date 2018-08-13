@@ -35,7 +35,7 @@ class MomirBasic extends Skill {
           type: 'bubble',
           header: {
             type: 'box',
-            layout: 'vertical',
+            layout: 'horizontal',
             contents: [
               {
                 type: 'text',
@@ -50,7 +50,6 @@ class MomirBasic extends Skill {
           body: {
             type: 'box',
             layout: 'vertical',
-            separator: true,
             contents: [
               {
                 type: 'text',
@@ -63,7 +62,6 @@ class MomirBasic extends Skill {
           footer: {
             type: 'box',
             layout: 'horizontal',
-            separator: true,
             contents: [
               {
                 type: 'text',
