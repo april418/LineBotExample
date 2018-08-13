@@ -22,7 +22,7 @@ class MomirBasic extends Skill {
       page: 1,
       pageSize: 1,
       type: 'Creature',
-      cmc: parseInt(event.message.text),
+      cmc: parseInt(this.event.message.text),
       random: true
     }).then(cards => {
       const card = cards[0]
