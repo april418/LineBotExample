@@ -79,14 +79,15 @@ class MomirBasic extends Skill {
   }
 
   generateMessageBody(card) {
-    return {
+    const body = {
       type: 'box',
       layout: 'vertical',
       contents: [
         {
           type: 'text',
           text: card.type,
-          size: 'sm'
+          size: 'sm',
+          margin: 'none'
         },
         {
           type: 'separator'
@@ -95,20 +96,29 @@ class MomirBasic extends Skill {
           type: 'text',
           text: card.text,
           size: 'sm',
-          wrap: true
-        },
+          wrap: true,
+          margin: 'none'
+        }
+      ]
+    }
+
+    if(card.flavor) {
+      body.contents.push(
         {
           type: 'separator'
         },
         {
           type: 'text',
           text: card.flavor,
-          color: '#333333',
+          color: '#555555',
           size: 'xs',
-          wrap: true
+          wrap: true,
+          margin: 'none'
         }
-      ]
+      )
     }
+
+    return body
   }
 
   generateMessageFooter(card) {
