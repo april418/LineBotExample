@@ -88,7 +88,12 @@ class MomirBasic extends Skill {
           text: card.type,
           size: 'sm',
           margin: 'none'
-        },
+        }
+      ]
+    }
+
+    if(card.text) {
+      body.contents.push(
         {
           type: 'separator'
         },
@@ -99,7 +104,7 @@ class MomirBasic extends Skill {
           wrap: true,
           margin: 'none'
         }
-      ]
+      )
     }
 
     if(card.flavor) {
