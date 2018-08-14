@@ -92,6 +92,7 @@ class MomirBasic extends Skill {
         {
           type: 'text',
           text: `${card.set} ${card.rarity}`,
+          size: 'sm',
           align: 'end'
         }
       ]
