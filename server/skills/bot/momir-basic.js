@@ -43,7 +43,10 @@ class MomirBasic extends Skill {
         type: 'bubble',
         header: this.generateMessageHeader(card),
         body: this.generateMessageBody(card),
-        footer: this.generateMessageFooter(card)
+        footer: this.generateMessageFooter(card),
+        styles: {
+          separator: true
+        }
       }
     }
   }
@@ -74,8 +77,26 @@ class MomirBasic extends Skill {
       contents: [
         {
           type: 'text',
+          text: card.type,
+          size: 'sm'
+        },
+        {
+          type: 'separator'
+        },
+        {
+          type: 'text',
           text: card.text,
           size: 'sm',
+          wrap: true
+        },
+        {
+          type: 'separator'
+        },
+        {
+          type: 'text',
+          text: card.flavor,
+          color: '#333333',
+          size: 'xs',
           wrap: true
         }
       ]
@@ -89,18 +110,8 @@ class MomirBasic extends Skill {
       contents: [
         {
           type: 'text',
-          text: card.power,
-          align: 'center'
-        },
-        {
-          type: 'text',
-          text: '/',
-          align: 'center'
-        },
-        {
-          type: 'text',
-          text: card.toughness,
-          align: 'center'
+          text: `${card.power} / ${card.toughness}`,
+          align: 'end'
         }
       ]
     }
