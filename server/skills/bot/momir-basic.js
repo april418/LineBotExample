@@ -82,12 +82,12 @@ class MomirBasic extends Skill {
     const body = {
       type: 'box',
       layout: 'vertical',
+      spacing: 'none',
       contents: [
         {
           type: 'text',
           text: card.type,
-          size: 'sm',
-          margin: 'none'
+          size: 'sm'
         }
       ]
     }
@@ -101,8 +101,7 @@ class MomirBasic extends Skill {
           type: 'text',
           text: card.text,
           size: 'sm',
-          wrap: true,
-          margin: 'none'
+          wrap: true
         }
       )
     }
@@ -117,8 +116,7 @@ class MomirBasic extends Skill {
           text: card.flavor,
           color: '#555555',
           size: 'xs',
-          wrap: true,
-          margin: 'none'
+          wrap: true
         }
       )
     }
