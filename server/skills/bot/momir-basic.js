@@ -62,7 +62,7 @@ class MomirBasic extends Skill {
   generateMessageHeader(card) {
     return {
       type: 'box',
-      layout: 'horizontal',
+      layout: 'vertical',
       contents: [
         {
           type: 'text',
