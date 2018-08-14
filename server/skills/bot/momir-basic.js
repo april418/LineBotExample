@@ -45,7 +45,15 @@ class MomirBasic extends Skill {
         body: this.generateMessageBody(card),
         footer: this.generateMessageFooter(card),
         styles: {
-          separator: true
+          header: {
+            separator: true
+          },
+          body: {
+            separator: true
+          },
+          footer: {
+            separator: true
+          }
         }
       }
     }
