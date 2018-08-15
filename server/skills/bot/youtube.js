@@ -3,7 +3,7 @@ const YoutubeAPI = require('../../classes/youtube-api.js')
 
 class Youtube extends Skill {
   static get PATTERN_VIDEO() {
-    return /video|動画/
+    return /.*video.*$|.*動画.*$/
   }
 
   constructor(bot, event) {
@@ -21,6 +21,7 @@ class Youtube extends Skill {
     return this.api.search({
       q: this.event.message.text.replace(this.constructor.PATTERN_VIDEO, '')
     }).then(result => {
+      console.log(result)
       if(!(result && result.items && result.items.length > 0)) return Promise.resolve()
       return this.reply(this.generateMessage(result))
     })
