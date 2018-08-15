@@ -82,14 +82,8 @@ class Youtube extends Skill {
 
   generateMessageHero(item) {
     return {
-      type: 'box',
-      layout: 'vertical',
-      contents: [
-        {
-          type: 'image',
-          url: item.snippet.thumbnails.high.url
-        }
-      ]
+      type: 'image',
+      url: item.snippet.thumbnails.high.url
     }
   }
 
