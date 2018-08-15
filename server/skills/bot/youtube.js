@@ -3,7 +3,7 @@ const YoutubeAPI = require('../../classes/youtube-api.js')
 
 class Youtube extends Skill {
   static get PATTERN_VIDEO() {
-    return /.*video.*$|.*動画.*$/
+    return /video|movie|動画/
   }
 
   constructor(bot, event) {
@@ -22,8 +22,8 @@ class Youtube extends Skill {
       q: this.event.message.text.replace(this.constructor.PATTERN_VIDEO, '')
     }).then(result => {
       console.log(result)
-      if(!(result && result.items && result.items.length > 0)) return Promise.resolve()
-      return this.reply(this.generateMessage(result))
+      if(!(result && result.data && result.data.items && result.data.items.length > 0)) return Promise.resolve()
+      return this.reply(this.generateMessage(result.data))
     })
   }
 
@@ -31,13 +31,13 @@ class Youtube extends Skill {
     return this.constructor.PATTERN_VIDEO.test(this.event.message.text)
   }
 
-  generateMessage(result) {
+  generateMessage(data) {
     return {
       type: 'flex',
       altText: 'Youtube search results',
       contents: {
         type: 'carousel',
-        contents: result.items.map(item => this.generateMessageBubble(item))
+        contents: data.items.map(item => this.generateMessageBubble(item))
       }
     }
   }
