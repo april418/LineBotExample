@@ -3,7 +3,7 @@ const YoutubeAPI = require('../../classes/youtube-api.js')
 
 class Youtube extends Skill {
   static get PATTERN_VIDEO() {
-    return /video|movie|動画/
+    return /video|movie|動画|つべ/
   }
 
   constructor(bot, event) {
@@ -44,27 +44,23 @@ class Youtube extends Skill {
 
   generateMessageBubble(item) {
     return {
-      type: 'flex',
-      altText: item.snippet.title,
-      contents: {
-        type: 'bubble',
-        header: this.generateMessageHeader(item),
-        hero: this.generateMessageHero(item),
-        body: this.generateMessageBody(item),
-        footer: this.generateMessageFooter(item),
-        styles: {
-          header: {
-            separator: true
-          },
-          hero: {
-            separator: true
-          },
-          body: {
-            separator: true
-          },
-          footer: {
-            separator: true
-          }
+      type: 'bubble',
+      header: this.generateMessageHeader(item),
+      hero: this.generateMessageHero(item),
+      body: this.generateMessageBody(item),
+      footer: this.generateMessageFooter(item),
+      styles: {
+        header: {
+          separator: true
+        },
+        hero: {
+          separator: true
+        },
+        body: {
+          separator: true
+        },
+        footer: {
+          separator: true
         }
       }
     }
