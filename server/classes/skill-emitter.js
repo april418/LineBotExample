@@ -5,8 +5,8 @@ class SkillEmitter {
   /**
    * Constructor of this class.
    *
-   * @param object bot
-   * @param array skills
+   * @param {object} bot
+   * @param {array} skills
    */
   constructor(bot, skills = []) {
     this.bot = bot
@@ -16,8 +16,8 @@ class SkillEmitter {
   /**
    * Execute all skills.
    *
-   * @param object event
-   * @return Promise
+   * @param {object} event
+   * @return {Promise}
    */
   emitAll(event) {
     return Promise.all(this.skills.map(skillClass => {

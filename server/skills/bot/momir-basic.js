@@ -1,5 +1,5 @@
 const { card } = require('mtgsdk')
-const Skill = require('./skill.js')
+const Skill = require('../../classes/skill.js')
 
 class MomirBasic extends Skill {
   static get PATTERN_MANACOST() {

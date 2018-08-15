@@ -8,8 +8,8 @@ class Skill {
    * Constructor of this class.
    * Set LINE BOT Client and requested event.
    *
-   * @param object bot
-   * @param object event
+   * @param {object} bot
+   * @param {object} event
    */
   constructor(bot, event) {
     this.bot = bot
@@ -20,7 +20,7 @@ class Skill {
    * Check whether this class should be executed.
    * Plese override this method.
    *
-   * @return boolean
+   * @return {boolean}
    */
   shouldBeExecuted() {
     return false
@@ -30,7 +30,7 @@ class Skill {
    * Execute this skill.
    * Plese override this method.
    *
-   * @return Promise
+   * @return {Promise}
    */
   execute() {
     return Promise.resolve()
@@ -39,8 +39,8 @@ class Skill {
   /**
    * Reply to user.
    *
-   * @param object message
-   * @return Promise
+   * @param {object} message
+   * @return {Promise}
    */
   reply(message) {
     return this.bot.replyMessage(this.event.replyToken, message)

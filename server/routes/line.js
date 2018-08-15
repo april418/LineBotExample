@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const { Client, middleware } = require('@line/bot-sdk')
-const SkillEmitter = require('../skills/bot/skill-emitter.js')
+const SkillEmitter = require('../classes/skill-emitter.js')
 const skills = require('../skills/bot/skills.js')
 
 const router = Router()

@@ -1,4 +1,4 @@
-const Skill = require('./skill.js')
+const Skill = require('../../classes/skill.js')
 
 class Hello extends Skill {
   constructor(bot, event) {
