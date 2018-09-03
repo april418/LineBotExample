@@ -24,5 +24,9 @@
     "googleapis": "^32.0.0",
     "morgan": "^1.9.0",
     "mtgsdk": "^0.3.0"
+  },
+  "devDependencies": {
+    "ngrok": "^3.0.1",
+    "opener": "^1.5.1"
   }
 }
