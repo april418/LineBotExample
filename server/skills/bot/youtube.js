@@ -83,7 +83,8 @@ class Youtube extends Skill {
   generateMessageHero(item) {
     return {
       type: 'image',
-      url: item.snippet.thumbnails.high.url
+      url: item.snippet.thumbnails.high.url,
+      size: 'full'
     }
   }
 
@@ -94,7 +95,7 @@ class Youtube extends Skill {
       contents: [
         {
           type: 'text',
-          text: item.snippet.desctiption,
+          text: item.snippet.description || 'no description',
           size: 'sm'
         }
       ]
@@ -111,7 +112,7 @@ class Youtube extends Skill {
           style: 'primary',
           action: {
             type: 'uri',
-            label: 'Play',
+            label: 'PLAY',
             uri: `https://www.youtube.com/watch?v=${item.id.videoId}`
           }
         }

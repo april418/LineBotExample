@@ -19,7 +19,10 @@ router.post('/', middleware(lineConfig), (request, response, next) => {
   })).then(returns => {
     console.log(`${returns.length} event(s) processed.`)
   }).catch(error => {
-    console.log(error)
+    console.log(`${error.constructor.name} has occured: ${error.message}`)
+    if(error instanceof HTTPError) {
+      console.log(error.originalError.response.data)
+    }
   })
 })
 
